@@ -1,18 +1,17 @@
-import React from "react";
-import { BottomTabBar, createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Home } from "./Home.screen";
-import {History} from "./History.screen"
-import { Analytics } from "./Analytics.screen";
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Home } from './Home.screen';
+import { History } from './History.screen';
+import { Analytics } from './Analytics.screen';
 
 const BottomTabs = createBottomTabNavigator();
 
-export const ButtonTabsNavigator:React.FC = ()=>{
-
-    return (
-        <BottomTabs.Navigator>
-            <BottomTabs.Screen name="Home" component={Home} />
-            <BottomTabs.Screen name="History" component={History} />
-            <BottomTabs.Screen name="Analytics" component={Analytics}/>
-        </BottomTabs.Navigator>
-    )
-} 
+export const ButtonTabsNavigator: React.FC = () => {
+  return (
+    <BottomTabs.Navigator>
+      <BottomTabs.Screen name="Home" component={Home} />
+      <BottomTabs.Screen name="History" component={History} />
+      <BottomTabs.Screen name="Analytics" component={Analytics} />
+    </BottomTabs.Navigator>
+  );
+};
