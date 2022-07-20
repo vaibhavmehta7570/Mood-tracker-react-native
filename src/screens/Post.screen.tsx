@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, FlatList, Text, View } from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  FlatList,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+
 import { PostsResponse } from '../types';
-export const Post: React.FC = () => {
+
+export const Post = ({ navigation }) => {
   const [posts, setPosts] = useState<PostsResponse[]>();
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/posts')
@@ -14,19 +22,24 @@ export const Post: React.FC = () => {
       })
       .catch(err => console.log(err));
   }, []);
+  console.log('navigation', navigation);
 
   //const renderItem = ({ item }) => <Item title={item.title} />;
 
   const renderItem = ({ item }: { item: PostsResponse }) => {
     return (
-      <View style={styles.box}>
+      <TouchableOpacity
+        style={styles.box}
+        onPress={() => {
+          // navigation.navigate('Details');
+        }}>
         <Text numberOfLines={1} style={[styles.text, styles.title]}>
           {item.title}
         </Text>
         <Text numberOfLines={2} style={styles.text}>
           {item.body.replace(/(\r\n|\n|\r)/gm, '')}
         </Text>
-      </View>
+      </TouchableOpacity>
     );
   };
   return (
