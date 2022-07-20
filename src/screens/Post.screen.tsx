@@ -20,8 +20,12 @@ export const Post: React.FC = () => {
   const renderItem = ({ item }: { item: PostsResponse }) => {
     return (
       <View style={styles.box}>
-        <Text style={[styles.text, styles.title]}>{item.title}</Text>
-        <Text style={styles.text}>{item.body}</Text>
+        <Text numberOfLines={1} style={[styles.text, styles.title]}>
+          {item.title}
+        </Text>
+        <Text numberOfLines={2} style={styles.text}>
+          {item.body.replace(/(\r\n|\n|\r)/gm, '')}
+        </Text>
       </View>
     );
   };
@@ -48,6 +52,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'justify',
   },
+
   title: {
     fontWeight: 'bold',
   },
