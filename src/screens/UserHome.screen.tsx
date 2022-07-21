@@ -1,15 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { StyleSheet, View, Image, Text, ScrollView } from 'react-native';
 import { UserResponse } from '../types';
 
-export const UserHome: React.FC = () => {
-  const [userData, setUserData] = useState<UserResponse>();
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users/1')
-      .then(response => response.json())
-      .then(json => setUserData(json))
-      .catch(err => console.log(err));
-  }, []);
+export const UserHome: React.FC = ({ route, navigation }) => {
+  const { userName, companyName, catchPhrase } = route.params;
 
   return (
     <ScrollView style={styles.container}>
@@ -19,9 +13,9 @@ export const UserHome: React.FC = () => {
           source={require('../assets/user.png')}
         />
         <View style={styles.rightDescription}>
-          <Text style={[styles.text, styles.name]}>{userData?.name}</Text>
-          <Text style={[styles.text]}>{userData?.company?.name}</Text>
-          <Text style={styles?.text}>{userData?.company?.catchPhrase}</Text>
+          <Text style={[styles.text, styles.name]}>{userName}</Text>
+          <Text style={[styles.text]}>{companyName}</Text>
+          <Text style={styles?.text}>{catchPhrase}</Text>
         </View>
       </View>
       <View>

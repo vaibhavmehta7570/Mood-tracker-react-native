@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, FlatList, Text, View } from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  FlatList,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import { TaskResponse } from '../types';
-export const Task: React.FC = () => {
+export const Task: React.FC = ({ navigation }: any) => {
   const [task, setTask] = useState<TaskResponse[]>();
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/todos/')
@@ -17,10 +23,20 @@ export const Task: React.FC = () => {
 
   const renderItem = ({ item }: { item: TaskResponse }) => {
     return (
-      <View style={styles.box}>
+      <TouchableOpacity
+        style={styles.box}
+        onPress={() => {
+          navigation.navigate('PostOrTask', {
+            mainHeading: 'Task',
+            title: item.title,
+            body: item.completed,
+            userId: item.userId,
+            id: item.id,
+          });
+        }}>
         <Text style={[styles.text, styles.title]}>{item.title}</Text>
         <Text style={styles.text}>{`Task completed: ${item.completed}`}</Text>
-      </View>
+      </TouchableOpacity>
     );
   };
   return (
