@@ -9,7 +9,7 @@ const BottomTabs = createBottomTabNavigator();
 export const ButtonTabsNavigator: React.FC = () => {
   return (
     <BottomTabs.Navigator>
-      <BottomTabs.Screen name="AllUsers" component={AllUsers} />
+      <BottomTabs.Screen name="Users" component={AllUsers} />
       <BottomTabs.Screen name="Posts" component={Post} />
       <BottomTabs.Screen name="Tasks" component={Task} />
     </BottomTabs.Navigator>

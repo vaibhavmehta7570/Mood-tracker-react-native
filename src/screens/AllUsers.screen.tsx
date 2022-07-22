@@ -28,8 +28,8 @@ export const AllUsers: React.FC = ({ navigation }) => {
             onPress={() => {
               navigation.navigate('UserHome', {
                 userName: user?.username,
-                companyName: user?.company.name,
-                catchPhrase: user?.company.catchPhrase,
+                companyName: user?.company,
+                catchPhrase: user?.catchPhrase,
               });
             }}>
             <View style={styles.subHeading}>
