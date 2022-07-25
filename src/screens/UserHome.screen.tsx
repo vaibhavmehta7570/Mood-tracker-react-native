@@ -1,8 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, ScrollView } from 'react-native';
-import { UserResponse } from '../types';
 
-export const UserHome: React.FC = ({ route, navigation }) => {
+export const UserHome: React.FC = ({ route }) => {
   const { userName, companyName, catchPhrase } = route.params;
 
   return (
@@ -84,12 +83,12 @@ const styles = StyleSheet.create({
   },
   rightDescription: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'space-between',
     height: 200,
+    marginHorizontal: 20,
   },
   text: {
-    textAlign: 'center',
     fontSize: 20,
   },
   name: {

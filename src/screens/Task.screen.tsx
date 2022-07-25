@@ -7,8 +7,10 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
+import { useAppContext } from '../App.provider';
 import { TaskResponse } from '../types';
 export const Task: React.FC = ({ navigation }: any) => {
+  const appContext = useAppContext();
   const [filteredData, setFilteredData] = useState([]);
   const [masterData, setMasterData] = useState([]);
   const [search, setSearch] = useState('');
@@ -16,11 +18,15 @@ export const Task: React.FC = ({ navigation }: any) => {
     fetch('https://jsonplaceholder.typicode.com/todos/')
       .then(response => response.json())
       .then(json => {
-        setMasterData(json);
-        setFilteredData(json);
+        const res =
+          json.filter(item => {
+            return item?.userId === appContext.user_Id;
+          }) ?? {};
+        setMasterData(res);
+        setFilteredData(res);
       })
       .catch(err => console.log(err));
-  }, []);
+  }, [appContext.user_Id]);
 
   const searchFilter = text => {
     if (text) {

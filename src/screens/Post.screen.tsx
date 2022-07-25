@@ -7,9 +7,12 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
+import { useAppContext } from '../App.provider';
+
 import { PostsResponse } from '../types';
 
 export const Post: React.FC = ({ navigation }: any) => {
+  const appContext = useAppContext();
   const [filteredData, setFilteredData] = useState([]);
   const [masterData, setMasterData] = useState([]);
   const [search, setSearch] = useState('');
@@ -17,11 +20,16 @@ export const Post: React.FC = ({ navigation }: any) => {
     fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
       .then(json => {
-        setFilteredData(json);
-        setMasterData(json);
+        const res =
+          json.filter(item => {
+            return item?.userId === appContext.user_Id;
+          }) ?? {};
+        setFilteredData(res);
+        setMasterData(res);
       })
       .catch(err => console.log(err));
-  }, []);
+  }, [appContext.user_Id]);
+  console.log(filteredData);
 
   const renderItem = ({ item }: { item: PostsResponse }) => {
     return (
@@ -45,7 +53,7 @@ export const Post: React.FC = ({ navigation }: any) => {
       </TouchableOpacity>
     );
   };
-  const searchFilter = text => {
+  const searchFilter = (text: React.SetStateAction<string>) => {
     if (text) {
       const newData = masterData.filter(item => {
         const itemData = item?.title

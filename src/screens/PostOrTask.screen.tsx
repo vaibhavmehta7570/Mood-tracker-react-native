@@ -16,12 +16,11 @@ export const PostOrTask = ({ route, navigation }) => {
       <Text numberOfLines={1} style={[styles.bold, styles.title]}>
         {title}
       </Text>
-      <Text>
+      <Text style={styles.text}>
         {mainHeading === 'Task'
           ? `Task Completed: ${body}`
           : `${body.replace(/(\r\n|\n|\r)/gm, '')}`}
       </Text>
-      {/* <Text> {body.replace(/(\r\n|\n|\r)/gm, '')}</Text> */}
     </View>
   );
 };
