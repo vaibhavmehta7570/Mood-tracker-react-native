@@ -19,12 +19,19 @@ export const AllUsers: React.FC = ({ navigation }: any) => {
       .catch(err => console.log(err));
   }, []);
 
+  const generateColor = () => {
+    const randomColor = Math.floor(Math.random() * 16777215)
+      .toString(16)
+      .padStart(6, '0');
+    return `#${randomColor}`;
+  };
+
   return (
     <ScrollView style={styles.container}>
       {Users?.map(user => {
         return (
           <TouchableOpacity
-            style={styles.user}
+            style={[styles.user, { backgroundColor: generateColor() }]}
             key={user.id}
             onPress={() => {
               appContext.handleUserIdChange(user?.id);
@@ -72,10 +79,9 @@ const styles = StyleSheet.create({
   },
   user: {
     height: 200,
-    width: '90%',
     borderWidth: 2,
     borderRadius: 10,
-    margin: 10,
+    margin: 20,
     backgroundColor: '#dff9fb',
     padding: 10,
   },
