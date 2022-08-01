@@ -1,9 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Pressable } from 'react-native';
 export const PostOrTask = ({ route, navigation }) => {
   const { mainHeading, title, body, userId, id } = route.params;
   return (
     <View style={styles.container}>
+      <Pressable style={styles.backButton} onPress={() => navigation.goBack()}>
+        <View>
+          <Text> Back </Text>
+        </View>
+      </Pressable>
       <View>
         <Text style={styles.mainHeading}>{mainHeading}</Text>
       </View>
@@ -50,5 +55,19 @@ const styles = StyleSheet.create({
   },
   title: {
     margin: 10,
+  },
+  backButton: {
+    backgroundColor: '#dcdde1',
+    width: 100,
+    height: 40,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontWeight: 'bold',
+    fontSize: 25,
+    borderRadius: 5,
+    position: 'absolute',
+    top: 0,
+    left: 0,
   },
 });

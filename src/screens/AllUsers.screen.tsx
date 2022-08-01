@@ -38,7 +38,9 @@ export const AllUsers: React.FC = ({ navigation }: any) => {
             <View style={styles.wrapper}>
               <Image
                 style={styles.userImage}
-                source={require('../assets/user.png')}
+                source={{
+                  uri: `https://robohash.org/${user.id}`,
+                }}
               />
               <View>
                 <Text>

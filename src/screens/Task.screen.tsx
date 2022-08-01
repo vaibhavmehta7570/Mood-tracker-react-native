@@ -58,8 +58,17 @@ export const Task: React.FC = ({ navigation }: any) => {
             id: item.id,
           });
         }}>
-        <Text style={[styles.text, styles.title]}>{item.title}</Text>
-        <Text style={styles.text}>{`Task completed: ${item.completed}`}</Text>
+        <Text numberOfLines={1} style={styles.text}>
+          <Text style={styles.title}>Tittle: </Text> {item.title}
+        </Text>
+        <Text>
+          <Text style={styles.title}>Task Status: </Text>
+          {item.completed === true ? (
+            <Text style={styles.text}> Completed</Text>
+          ) : (
+            <Text style={styles.text}>Pending</Text>
+          )}
+        </Text>
       </TouchableOpacity>
     );
   };
@@ -91,6 +100,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     margin: 5,
     borderRadius: 20,
+    marginVertical: 10,
   },
   text: {
     textAlign: 'justify',
@@ -106,5 +116,9 @@ const styles = StyleSheet.create({
     borderColor: '#009688',
     backgroundColor: '#ffff',
     borderRadius: 20,
+  },
+  titleContainer: {
+    flex: 1,
+    flexDirection: 'row',
   },
 });

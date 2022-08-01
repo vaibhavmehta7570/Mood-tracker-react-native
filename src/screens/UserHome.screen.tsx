@@ -1,15 +1,29 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text, ScrollView } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Image,
+  Text,
+  ScrollView,
+  Pressable,
+} from 'react-native';
 
-export const UserHome: React.FC = ({ route }) => {
-  const { userName, companyName, catchPhrase } = route.params;
+export const UserHome: React.FC = ({ route, navigation }) => {
+  const { userName, companyName, catchPhrase, id } = route.params;
 
   return (
     <ScrollView style={styles.container}>
+      <Pressable style={styles.backButton} onPress={() => navigation.goBack()}>
+        <View>
+          <Text> Back </Text>
+        </View>
+      </Pressable>
       <View style={styles.porfileDescription}>
         <Image
           style={styles.userImage}
-          source={require('../assets/user.png')}
+          source={{
+            uri: `https://robohash.org/${id}`,
+          }}
         />
         <View style={styles.rightDescription}>
           <Text style={[styles.text, styles.name]}>{userName}</Text>
@@ -76,7 +90,7 @@ const styles = StyleSheet.create({
   },
   porfileDescription: {
     marginHorizontal: 20,
-    marginVertical: 20,
+    marginVertical: 60,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -99,5 +113,19 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     marginVertical: 10,
     paddingHorizontal: 10,
+  },
+  backButton: {
+    backgroundColor: '#808e9b',
+    width: 100,
+    height: 40,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontWeight: 'bold',
+    fontSize: 25,
+    borderRadius: 5,
+    position: 'absolute',
+    top: 0,
+    left: 0,
   },
 });

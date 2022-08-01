@@ -6,6 +6,7 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
+  View,
 } from 'react-native';
 import { useAppContext } from '../App.provider';
 
@@ -29,7 +30,6 @@ export const Post: React.FC = ({ navigation }: any) => {
       })
       .catch(err => console.log(err));
   }, [appContext.user_Id]);
-  console.log(filteredData);
 
   const renderItem = ({ item }: { item: PostsResponse }) => {
     return (
@@ -44,12 +44,16 @@ export const Post: React.FC = ({ navigation }: any) => {
             id: item.id,
           });
         }}>
-        <Text numberOfLines={1} style={[styles.text, styles.title]}>
-          {item.title}
-        </Text>
-        <Text numberOfLines={2} style={styles.text}>
-          {item.body.replace(/(\r\n|\n|\r)/gm, '')}
-        </Text>
+        <View>
+          <View>
+            <Text numberOfLines={1} style={[styles.text, styles.title]}>
+              Tittle: {item.title}
+            </Text>
+          </View>
+          <Text numberOfLines={2} style={styles.text}>
+            {item.body.replace(/(\r\n|\n|\r)/gm, '')}
+          </Text>
+        </View>
       </TouchableOpacity>
     );
   };
@@ -97,9 +101,11 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     margin: 5,
     borderRadius: 20,
+    marginVertical: 10,
   },
   text: {
     textAlign: 'justify',
+    marginVertical: 5,
   },
 
   title: {
