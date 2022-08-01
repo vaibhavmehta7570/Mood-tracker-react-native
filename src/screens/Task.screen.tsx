@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useAppContext } from '../App.provider';
 import { TaskResponse } from '../types';
+import { generateColor } from '../utils';
 export const Task: React.FC = ({ navigation }: any) => {
   const appContext = useAppContext();
   const [filteredData, setFilteredData] = useState([]);
@@ -48,7 +49,7 @@ export const Task: React.FC = ({ navigation }: any) => {
   const renderItem = ({ item }: { item: TaskResponse }) => {
     return (
       <TouchableOpacity
-        style={styles.box}
+        style={[styles.box, { backgroundColor: generateColor() }]}
         onPress={() => {
           navigation.navigate('PostOrTask', {
             mainHeading: 'Task',

@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { useAppContext } from '../App.provider';
+import { generateColor } from '../utils';
 
 export const AllUsers: React.FC = ({ navigation }: any) => {
   const appContext = useAppContext();
@@ -18,13 +19,6 @@ export const AllUsers: React.FC = ({ navigation }: any) => {
       .then(json => setUsers(json))
       .catch(err => console.log(err));
   }, []);
-
-  const generateColor = () => {
-    const randomColor = Math.floor(Math.random() * 16777215)
-      .toString(16)
-      .padStart(6, '0');
-    return `#${randomColor}`;
-  };
 
   return (
     <ScrollView style={styles.container}>
@@ -82,7 +76,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 10,
     margin: 20,
-    backgroundColor: '#dff9fb',
     padding: 10,
   },
   subHeading: {
@@ -102,6 +95,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: 40,
+    fontSize: 20,
     marginHorizontal: 20,
   },
 });

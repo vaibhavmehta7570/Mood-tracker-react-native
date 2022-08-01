@@ -11,6 +11,7 @@ import {
 import { useAppContext } from '../App.provider';
 
 import { PostsResponse } from '../types';
+import { generateColor } from '../utils';
 
 export const Post: React.FC = ({ navigation }: any) => {
   const appContext = useAppContext();
@@ -34,7 +35,7 @@ export const Post: React.FC = ({ navigation }: any) => {
   const renderItem = ({ item }: { item: PostsResponse }) => {
     return (
       <TouchableOpacity
-        style={styles.box}
+        style={[styles.box, { backgroundColor: generateColor() }]}
         onPress={() => {
           navigation.navigate('PostOrTask', {
             mainHeading: 'Post',
