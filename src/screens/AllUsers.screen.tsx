@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     height: 200,
     borderWidth: 2,
     borderRadius: 10,
-    margin: 20,
+    margin: 10,
     padding: 10,
   },
   subHeading: {
@@ -87,15 +87,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   userImage: {
-    height: 100,
-    width: 70,
+    height: 150,
+    width: 150,
   },
   wrapper: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 40,
+    marginTop: 10,
     fontSize: 20,
-    marginHorizontal: 20,
+    marginHorizontal: 10,
   },
 });
