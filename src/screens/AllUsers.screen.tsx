@@ -19,6 +19,7 @@ export const AllUsers: React.FC = ({ navigation }: any) => {
       .then(json => setUsers(json))
       .catch(err => console.log(err));
   }, []);
+  console.log('Users', Users);
 
   return (
     <ScrollView style={styles.container}>
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
     height: 200,
     borderWidth: 2,
     borderRadius: 10,
-    margin: 10,
+    margin: 15,
     padding: 10,
   },
   subHeading: {
